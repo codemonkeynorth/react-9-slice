@@ -1,16 +1,30 @@
-import React from "react"
-import * as PropTypes from "prop-types"
+import React, { ReactNode, CSSProperties } from "react"
 
-export default function React9SliceOld({
+interface ImageSize {
+  x: number
+  y: number
+}
+
+interface React9SliceProps {
+  image: string
+  border?: number
+  width?: number
+  height?: number
+  children?: ReactNode
+  imageSize: ImageSize
+  style?: CSSProperties
+}
+
+const React9Slice: React.FC<React9SliceProps> = ({
   image,
   border = 8,
   width = 128,
   height = 128,
   children,
   imageSize,
-  style,
-}) {
-  const BASE_STYLE = {
+  style = {},
+}) => {
+  const BASE_STYLE: CSSProperties = {
     width: border,
     height: border,
     display: "inline-flex",
@@ -40,10 +54,11 @@ export default function React9SliceOld({
       }}
     >
       <div style={{ position: RELATIVE }}>
-        <div className="r9s-nw" style={Object.assign({}, BASE_STYLE)}></div>
+        <div className="r9s-nw" style={{ ...BASE_STYLE }} />
         <div
           className="r9s-n"
-          style={Object.assign({}, BASE_STYLE, {
+          style={{
+            ...BASE_STYLE,
             width: IMAGE_X_SIZE_MINUS_BORDER,
             transformOrigin: "left",
             transform: `scaleX(${SCALE_X})`,
@@ -51,31 +66,35 @@ export default function React9SliceOld({
             position: ABSOLUTE,
             left: border,
             top: 0,
-          })}
-        ></div>
+          }}
+        />
         <div
           className="r9s-ne"
-          style={Object.assign({}, BASE_STYLE, {
+          style={{
+            ...BASE_STYLE,
             backgroundPositionX: IMAGE_X_SIZE_AND_BORDER,
             position: ABSOLUTE,
             top: 0,
             left: BORDER_AND_WIDTH,
-          })}
-        ></div>
+          }}
+        />
       </div>
+
       <div style={{ position: RELATIVE, height, width: width + border * 2 }}>
         <div
           className="r9s-w"
-          style={Object.assign({}, BASE_STYLE, {
+          style={{
+            ...BASE_STYLE,
             height: IMAGE_Y_SIZE_MINUS_BORDER,
             backgroundPositionY: MINUS_BORDER,
             transformOrigin: "left top",
             transform: `scaleY(${SCALE_Y})`,
-          })}
-        ></div>
+          }}
+        />
         <div
           className="r9s-c"
-          style={Object.assign({}, BASE_STYLE, {
+          style={{
+            ...BASE_STYLE,
             width: IMAGE_X_SIZE_MINUS_BORDER,
             height: IMAGE_Y_SIZE_MINUS_BORDER,
             lineHeight: 1,
@@ -87,11 +106,12 @@ export default function React9SliceOld({
             position: ABSOLUTE,
             left: border,
             top: 0,
-          })}
-        ></div>
+          }}
+        />
         <div
           className="r9s-e"
-          style={Object.assign({}, BASE_STYLE, {
+          style={{
+            ...BASE_STYLE,
             height: IMAGE_Y_SIZE_MINUS_BORDER,
             backgroundPositionX: IMAGE_X_SIZE_AND_BORDER,
             backgroundPositionY: MINUS_BORDER,
@@ -100,38 +120,38 @@ export default function React9SliceOld({
             left: BORDER_AND_WIDTH,
             transformOrigin: "left top",
             transform: `scaleY(${SCALE_Y})`,
-          })}
-        ></div>
+          }}
+        />
         <div
           className="r9-content"
-          style={Object.assign(
-            {},
-            {
-              position: ABSOLUTE,
-              top: border * 0.5,
-              left: border,
-              width,
-              height,
-              zIndex: 10,
-              boxSizing: "border-box",
-              lineHeight: 1.39,
-            },
-            style
-          )}
+          style={{
+            position: ABSOLUTE,
+            top: border * 0.5,
+            left: border,
+            width,
+            height,
+            zIndex: 10,
+            boxSizing: "border-box",
+            lineHeight: 1.39,
+            ...style,
+          }}
         >
           {children}
         </div>
       </div>
+
       <div style={{ position: ABSOLUTE, top: height + border }}>
         <div
           className="r9s-sw"
-          style={Object.assign({}, BASE_STYLE, {
+          style={{
+            ...BASE_STYLE,
             backgroundPositionY: IMAGE_Y_SIZE_AND_BORDER,
-          })}
-        ></div>
+          }}
+        />
         <div
           className="r9s-s"
-          style={Object.assign({}, BASE_STYLE, {
+          style={{
+            ...BASE_STYLE,
             width: IMAGE_X_SIZE_MINUS_BORDER,
             transformOrigin: "left",
             transform: `scaleX(${SCALE_X})`,
@@ -140,36 +160,22 @@ export default function React9SliceOld({
             position: ABSOLUTE,
             left: border,
             top: 0,
-          })}
-        ></div>
+          }}
+        />
         <div
           className="r9s-se"
-          style={Object.assign({}, BASE_STYLE, {
+          style={{
+            ...BASE_STYLE,
             backgroundPositionX: IMAGE_X_SIZE_AND_BORDER,
             backgroundPositionY: IMAGE_Y_SIZE_AND_BORDER,
             position: ABSOLUTE,
             top: 0,
             left: BORDER_AND_WIDTH,
-          })}
-        ></div>
+          }}
+        />
       </div>
     </div>
   )
 }
 
-React9SliceOld.propTypes = {
-  image: PropTypes.string.isRequired,
-  border: PropTypes.number.isRequired,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.node,
-    PropTypes.element,
-  ]),
-  imageSize: PropTypes.shape({
-    x: PropTypes.number.isRequired,
-    y: PropTypes.number.isRequired,
-  }).isRequired,
-  style: PropTypes.object,
-}
+export default React9Slice
