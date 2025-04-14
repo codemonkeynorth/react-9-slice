@@ -3,9 +3,7 @@
   "version": "0.1.6",
   "description": "",
   "main": "src/react9Slice.jsx",
-  "dependencies": {
-    
-  },
+  "dependencies": {},
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -14,21 +12,29 @@
     "html-webpack-plugin": "^2.30.1",
     "webpack": "^3.5.5",
     "webpack-dev-server": "^2.7.1",
-    "prop-types": "^15.5.10",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "prop-types": "^15.8.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "prop-types": "^15.5.10"
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "prop-types": "^15.8.1"
   },
   "scripts": {
     "start": "webpack-dev-server"
   },
   "browserify": {
     "transform": [
-      ["babelify", { "presets": [ "es2015", "react" ] }]
+      [
+        "babelify",
+        {
+          "presets": [
+            "es2015",
+            "react"
+          ]
+        }
+      ]
     ]
   },
   "author": "Alex Bardanov <dnbard@gmail.com>",
