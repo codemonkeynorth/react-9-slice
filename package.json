@@ -2,7 +2,7 @@
   "name": "react-9-slice",
   "version": "0.1.6",
   "description": "",
-  "main": "src/react9Slice.jsx",
+  "main": "src/react9Slice.tsx",
   "dependencies": {},
   "devDependencies": {
     "babel-core": "^6.26.0",
